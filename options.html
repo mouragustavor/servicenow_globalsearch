@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ServiceNow Global Search - Options</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; max-width: 720px; }
+      .card { border: 1px solid #e5e7eb; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+      label { display:block; font-weight: 600; margin: 12px 0 6px; }
+      input, select { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 10px; }
+      .row { display:flex; gap: 10px; margin-top: 14px; }
+      button { padding: 10px 14px; border: 0; border-radius: 10px; cursor: pointer; }
+      button.primary { background:#2563eb; color:#fff; }
+      button.secondary { background:#f3f4f6; color:#111827; }
+      .status { margin-top: 10px; font-size: 13px; color:#065f46; display:none; }
+      .hint { margin-top: 8px; font-size: 13px; color:#6b7280; line-height: 1.45; }
+      code { background:#f3f4f6; padding: 2px 6px; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+    <h1>ServiceNow Global Search — Options</h1>
+
+    <div class="card">
+      <label for="instanceUrl">ServiceNow instance / domain</label>
+      <input id="instanceUrl" type="text" placeholder="https://myinstance.service-now.com" />
+
+      <div class="hint">
+        You can enter:
+        <ul>
+          <li><code>https://myinstance.service-now.com</code> (recommended)</li>
+          <li><code>myinstance.service-now.com</code> (we’ll add <code>https://</code>)</li>
+          <li><code>myinstance</code> (we’ll assume <code>.service-now.com</code>)</li>
+        </ul>
+      </div>
+
+      <label for="searchMode">Search URL mode</label>
+      <select id="searchMode">
+        <option value="new">New global search results: /$sn_global_search_results.do</option>
+        <option value="legacy">Legacy text search: /textsearch.do</option>
+        <option value="exact">Exact match helper: /text_search_exact_match.do</option>
+      </select>
+
+      <div class="hint">
+        ServiceNow notes that <code>textsearch.do</code> may redirect to <code>$sn_global_search_results.do</code> in newer releases,
+        and provides <code>text_search_exact_match.do</code> for exact-match behavior. [3](https://support.servicenow.com/kb/kb/kb/kb?id=kb_article_view&sysparm_article=KB0681156)
+      </div>
+
+      <div class="row">
+        <button id="save" class="primary">Save</button>
+        <button id="test" class="secondary">Test Search</button>
+      </div>
+
+      <div class="status" id="status">Saved.</div>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
